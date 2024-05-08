@@ -1,0 +1,122 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	},
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/menu/menu",
+			"style": {
+				"navigationBarTitleText": "点餐",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/privacy/privacy",
+			"style": {
+				"navigationBarTitleText": "个人",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/privacy/settings/settings",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
+		},
+		{
+			"path": "pages/privacy/address/address",
+			"style": {
+				"navigationBarTitleText": "地址"
+			}
+		},
+		{
+			"path": "pages/privacy/address-form/address-form",
+			"style": {
+				"navigationBarTitleText": "新建地址"
+			}
+		},
+		{
+			"path": "pages/order/chooseCoupon/chooseCoupon",
+			"style": {
+				"navigationBarTitleText": "优惠券"
+			}
+		},
+		{
+			"path": "pages/countDown/countDown1",
+			"style": {
+				"navigationBarTitleText": "支付失败倒计时",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/paySuccess/paySuccess",
+			"style": {
+				"navigationBarTitleText": "支付成功",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/orderList/orderList",
+			"style": {
+				"navigationBarTitleText": "订单列表",
+				"navigationBarBackgroundColor": "#ffc200"
+			}
+		},
+		{
+			"path": "pages/orderDetail/orderDetail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#0c0c0c"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#919293",
+		"selectedColor": "#dd524d",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/images/tabBar/index.png",
+				"selectedIconPath": "static/images/tabBar/index_selected.png"
+			},
+			{
+				"pagePath": "pages/menu/menu",
+				"text": "点餐",
+				"iconPath": "static/images/tabBar/drink.png",
+				"selectedIconPath": "static/images/tabBar/drink-selected.png"
+			},
+			{
+				"pagePath": "pages/privacy/privacy",
+				"text": "个人",
+				"iconPath": "static/images/tabBar/mine.png",
+				"selectedIconPath": "static/images/tabBar/mine_selected.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
