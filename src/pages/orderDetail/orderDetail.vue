@@ -1,5 +1,5 @@
 <script setup>
-	import { ref, defineProps } from "vue";
+	import { ref, defineProps, onMounted, onUnmounted } from "vue";
 	import { getOrderDetailAPI } from "../../services/orderDetail";
 	import { getDiscountAPI } from "../../services/coupon";
 	import { useMemberStore } from "@/stores";
@@ -64,9 +64,9 @@
 	//去支付
 	const goPay = async () => {
 		uni.showModal({
-			title: "微信模拟支付", 
-			cancelText: "支付取消", 
-			confirmText: "支付成功", 
+			title: "微信模拟支付",
+			cancelText: "支付取消",
+			confirmText: "支付成功",
 			success: async (res) => {
 				if (res.confirm) {
 					await goPayAPI(order.value.id);
@@ -78,6 +78,55 @@
 			},
 		});
 	};
+	//webSocket配置
+	const isConnected = ref(false);
+	const receivedMessage = ref("");
+	let websocket;
+	// 创建WebSocket连接
+	const connectWebSocket = () => {
+		const wsUrl = `ws://localhost:8080/ws/${props.orderId}`; // 这里填写实际的WebSocket URL
+		websocket = uni.connectSocket({
+			url: wsUrl,
+			success: () => {
+				console.log("WebSocket连接成功");
+			},
+			fail: (err) => {
+				console.error("WebSocket连接失败", err);
+			},
+		});
+
+		websocket.onOpen(() => {
+			console.log("WebSocket 已打开");
+			isConnected.value = true;
+		});
+
+		websocket.onMessage((message) => {
+			console.log("收到消息：", message.data);
+			receivedMessage.value = message.data;
+		});
+
+		websocket.onClose(() => {
+			console.log("WebSocket 已关闭");
+			isConnected.value = false;
+		});
+
+		websocket.onError((err) => {
+			console.error("WebSocket 发生错误", err);
+		});
+	};
+	//页面挂载时webSocket进行连接
+	onMounted(() => {
+		connectWebSocket();
+	});
+	//页面销毁时关闭连接
+	onUnmounted(() => {
+		if (websocket && isConnected.value) {
+			websocket.close({
+				code: 1000,
+				reason: "页面关闭",
+			});
+		}
+	});
 	onLoad(async () => {
 		await getOrderDetail();
 		if (order.value.couponId !== null) {
