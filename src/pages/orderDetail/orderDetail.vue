@@ -103,6 +103,7 @@
 		websocket.onMessage((message) => {
 			console.log("收到消息：", message.data);
 			receivedMessage.value = message.data;
+			getOrderDetail();
 		});
 
 		websocket.onClose(() => {
@@ -158,6 +159,12 @@
 						>已完成</view
 					>
 					<view v-else="order.status" class="status icon-clock">已取消</view>
+					<view
+						v-if="
+							order.status !== 2 && order.status !== 5 && order.status !== 6
+						"
+						>取餐码 {{ order.pickupCode }}</view
+					>
 				</view>
 				<view v-if="order.status === 1" class="tips">
 					<text class="money">需付金额: ¥ {{ order.amount }}</text>
