@@ -75,12 +75,12 @@
 					console.log("支付成功");
 					await goPayAPI(orderData.value.id);
 					uni.navigateTo({
-						url: `/pages/paySuccess/paySuccess?orderId=${orderData.value.id}&orderNumber=${orderData.value.orderNumber}`,
+						url: `/pages/orderDetail/orderDetail?orderId=${orderData.value.id}`,
 					});
 				} else if (res.cancel) {
 					console.log("支付失败");
 					uni.navigateTo({
-						url: `/pages/countDown/countDown1?orderId=${orderData.value.id}&orderAmount=${orderData.value.orderAmount}&orderNumber=${orderData.value.orderNumber}&orderTime=${orderData.value.orderTime}`,
+						url: `/pages/orderDetail/orderDetail?orderId=${orderData.value.id}`,
 					});
 					props.closeOrder();
 				}

@@ -161,7 +161,10 @@
 					<view v-else="order.status" class="status icon-clock">已取消</view>
 					<view
 						v-if="
-							order.status !== 2 && order.status !== 5 && order.status !== 6
+							order.status !== 1 &&
+							order.status !== 2 &&
+							order.status !== 5 &&
+							order.status !== 6
 						"
 						>取餐码 {{ order.pickupCode }}</view
 					>
@@ -216,11 +219,15 @@
 					</view>
 					<view class="row" v-if="discount">
 						<view class="text">会员折扣</view>
-						<view class="symbol">{{ discount }}折</view>
+						<view class="symbol"
+							>{{ discount === "" ? "非会员无折扣" : discount }}折</view
+						>
 					</view>
 					<view class="row" v-if="true">
 						<view class="text">优惠券</view>
-						<view class="symbol">-{{ couponDiscount }}￥</view>
+						<view class="symbol">{{
+							couponDiscount === 0 ? "未使用" : "-" + couponDiscount + "￥"
+						}}</view>
 					</view>
 					<view class="row">
 						<view class="text">实付金额: </view>
