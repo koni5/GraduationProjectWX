@@ -84,7 +84,7 @@
 	let websocket;
 	// 创建WebSocket连接
 	const connectWebSocket = () => {
-		const wsUrl = `ws://localhost:8080/ws/${props.orderId}`; // 这里填写实际的WebSocket URL
+		const wsUrl = `ws://47.109.193.174:8080/ws/${props.orderId}`; // 这里填写实际的WebSocket URL
 		websocket = uni.connectSocket({
 			url: wsUrl,
 			success: () => {
@@ -158,7 +158,10 @@
 					<view v-else-if="order.status === 4" class="status icon-clock"
 						>已完成</view
 					>
-					<view v-else="order.status" class="status icon-clock">已取消</view>
+					<view v-else-if="order.status === 5" class="status icon-clock"
+						>已取消</view
+					>
+					<view v-else class="status icon-clock">已退款</view>
 					<view
 						v-if="
 							order.status !== 1 &&
@@ -247,7 +250,12 @@
 					<view class="item" v-if="order.status === 5"
 						>取消原因:{{ order.cancelReason }}</view
 					>
-					<view class="item">备注信息:{{ order.remark }}</view>
+					<view class="item" v-if="order.status === 6"
+						>退款原因:{{ order.rejectionReason }}</view
+					>
+					<view class="item"
+						>备注信息:{{ order.remark === "" ? "无" : order.remark }}</view
+					>
 				</view>
 			</view>
 		</scroll-view>

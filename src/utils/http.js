@@ -1,7 +1,7 @@
 import { useMemberStore } from "@/stores"
 const baseURL
   =
-  'http://127.0.0.1:8080'
+  'http://47.109.193.174:8080'
   const httpInterceptor = {
     //拦截前触发
     invoke(options) {

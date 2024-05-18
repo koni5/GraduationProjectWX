@@ -73,6 +73,7 @@
 	};
 	//购物车菜品加1
 	const addDish = async (shopCartId) => {
+		console.log(shopCartId)
 		await addOneAPI(shopCartId);
 		props.getCartList();
 	};

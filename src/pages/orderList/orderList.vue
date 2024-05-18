@@ -76,7 +76,8 @@
 				<text v-else-if="order.status === 2" class="status">待接单 〉</text>
 				<text v-else-if="order.status === 3" class="status">制作中 〉</text>
 				<text v-else-if="order.status === 4" class="status">已完成 〉</text>
-				<text v-else class="status">已取消 〉</text>
+				<text v-else-if="order.status === 5" class="status">已取消 〉</text>
+				<text v-else class="status">已退款 〉</text>
 				<view class="date">{{ order.orderTime }}</view>
 				<image
 					v-for="orderDetail in order.orderDetailList"
