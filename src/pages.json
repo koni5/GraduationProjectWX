@@ -7,13 +7,6 @@
 	},
 	"pages": [
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "首页",
-				"navigationStyle": "custom"
-			}
-		},
-		{
 			"path": "pages/menu/menu",
 			"style": {
 				"navigationBarTitleText": "点餐",
@@ -93,12 +86,6 @@
 		"backgroundColor": "#fff",
 		"borderStyle": "black",
 		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"text": "首页",
-				"iconPath": "static/images/tabBar/index.png",
-				"selectedIconPath": "static/images/tabBar/index_selected.png"
-			},
 			{
 				"pagePath": "pages/menu/menu",
 				"text": "点餐",

@@ -77,7 +77,7 @@
 				<text v-else-if="order.status === 3" class="status">制作中 〉</text>
 				<text v-else-if="order.status === 4" class="status">已完成 〉</text>
 				<text v-else-if="order.status === 5" class="status">已取消 〉</text>
-				<text v-else class="status">已退款 〉</text>
+				<text v-else class="status" style="color: #cd6262">已退款 〉</text>
 				<view class="date">{{ order.orderTime }}</view>
 				<image
 					v-for="orderDetail in order.orderDetailList"
@@ -95,9 +95,7 @@
 				<text class="price">￥{{ order.amount }}</text>
 				<button v-if="order.status === 1" class="cancel">取消订单</button>
 				<button v-if="order.status === 1" class="goPay">立即支付</button
-				><button v-else class="oneMore">
-					再来一单
-				</button></navigator
+				><button v-else class="oneMore">再来一单</button></navigator
 			></scroll-view
 		>
 		<view class="loading-text">
@@ -133,14 +131,14 @@
 					float: right;
 					margin-top: 33rpx;
 				}
-				.oneMore{
+				.oneMore {
 					margin-left: 525rpx;
 					width: 190rpx;
 					text-align: center;
 					line-height: 65rpx;
 					font-size: 28rpx;
 					color: #fefe;
-					background-color: #0c0c0c
+					background-color: #0c0c0c;
 				}
 				.goPay {
 					margin-top: 40rpx;

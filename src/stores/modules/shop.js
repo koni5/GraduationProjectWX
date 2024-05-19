@@ -5,7 +5,7 @@ export const useShopStore = defineStore(
     'shop',
     () => {
       // 店铺信息
-      const info = ref()
+      const info = ref({id:3,name:"川菜馆",address:"观音桥店",phone:"1615516516"})
   
       // 保存店铺信息，点餐时使用
       const setInfo = (val) => {

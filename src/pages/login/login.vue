@@ -9,25 +9,18 @@
 		code = res.code;
 	});
 	const getUserInfo = async () => {
-		let res = await postLoginAPI({ code });
-		console.log("##########"+res);
-		useMemberStore().setProfile(res.data);
+		let res1 = await postLoginAPI({ code });
 		uni.getUserProfile({
 			desc: "登录",
-			success: function (res) {
-				console.log(res.userInfo);
+			success: function (res2) {
+				console.log(res2.userInfo)
+				useMemberStore().setProfile({...res1.data,...res2.userInfo});
+				uni.switchTab({
+				url: `/pages/privacy/privacy`,
+			});
 			},
 			fail: function (err) {},
 		});
-		uni.showToast({
-			icon: "success",
-			title: "登录成功",
-		});
-		setTimeout(() => {
-			uni.switchTab({
-				url: `/pages/privacy/privacy`,
-			});
-		}, 500);
 	};
 </script>
 
@@ -37,11 +30,6 @@
 			<image src="../../static/images//chainImg/chainImg.png"></image>
 		</view>
 		<view class="login">
-			<!-- 网页端表单登录 -->
-			<!-- <input class="input" type="text" placeholder="请输入用户名/手机号码" /> -->
-			<!-- <input class="input" type="text" password placeholder="请输入密码" /> -->
-			<!-- <button class="button phone">登录</button> -->
-
 			<!-- 小程序端授权登录 -->
 			<button class="button phone" @click="getUserInfo">
 				<text class="icon icon-phone"></text>

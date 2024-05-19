@@ -22,7 +22,12 @@
 </script>
 
 <template>
-	<scroll-view class="viewport" scroll-y enable-back-to-top :style="{ paddingTop: safeAreaInsets?.top + 'px' }">
+	<scroll-view
+		class="viewport"
+		scroll-y
+		enable-back-to-top
+		:style="{ paddingTop: safeAreaInsets?.top + 'px' }"
+	>
 		<!-- 个人资料 -->
 		<view class="profile" :style="{ paddingTop: safeAreaInsets.top + 'px' }">
 			<!-- 情况1：已登录 -->
@@ -31,18 +36,11 @@
 					<image
 						class="avatar"
 						mode="aspectFill"
-						src="../../static/images/profileImg/default.png"
+						:src="memberStore.profile.avatarUrl"
 					></image>
 				</navigator>
 				<view class="meta">
-					<view class="nickname"> 微信用户 </view>
-					<navigator
-						class="extra"
-						url="/pagesMember/profile/profile"
-						hover-class="none"
-					>
-						<text class="update">更新头像昵称</text>
-					</navigator>
+					<view class="nickname"> {{ memberStore.profile.nickName }} </view>
 				</view>
 			</view>
 			<!-- 情况2：未登录 -->
@@ -93,7 +91,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 	.viewport {
 		background-color: #eeeeee;
 		height: 100vh;
@@ -138,8 +135,8 @@
 		.nickname {
 			max-width: 350rpx;
 			margin-bottom: 16rpx;
-			font-size: 30rpx;
-
+			font-size: 35rpx;
+			font-weight: bold;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
