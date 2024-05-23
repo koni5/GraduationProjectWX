@@ -84,7 +84,7 @@
 	let websocket;
 	// 创建WebSocket连接
 	const connectWebSocket = () => {
-		const wsUrl = `ws://47.109.193.174:8080/ws/${props.orderId}`; // 这里填写实际的WebSocket URL
+		const wsUrl = `ws://localhost:8080/ws/${props.orderId}`; // 这里填写实际的WebSocket URL
 		websocket = uni.connectSocket({
 			url: wsUrl,
 			success: () => {

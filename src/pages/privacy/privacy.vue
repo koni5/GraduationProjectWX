@@ -32,13 +32,11 @@
 		<view class="profile" :style="{ paddingTop: safeAreaInsets.top + 'px' }">
 			<!-- 情况1：已登录 -->
 			<view class="overview" v-if="memberStore.profile">
-				<navigator url="/pagesMember/profile/profile" hover-class="none">
 					<image
 						class="avatar"
 						mode="aspectFill"
 						:src="memberStore.profile.avatarUrl"
 					></image>
-				</navigator>
 				<view class="meta">
 					<view class="nickname"> {{ memberStore.profile.nickName }} </view>
 				</view>
@@ -105,13 +103,13 @@
 		position: relative;
 
 		.overview {
-			display: flex;
 			height: 120rpx;
 			padding: 0 36rpx;
 			color: #fff;
 		}
 
 		.avatar {
+			margin-left: 10rpx;
 			width: 120rpx;
 			height: 120rpx;
 			border-radius: 50%;
@@ -128,16 +126,15 @@
 			justify-content: center;
 			align-items: flex-start;
 			line-height: 30rpx;
-			padding: 16rpx 0;
-			margin-left: 20rpx;
+			padding: 12rpx 0;
+			margin-bottom: 15rpx;
 		}
 
 		.nickname {
-			max-width: 350rpx;
+			max-width: 400rpx;
 			margin-bottom: 16rpx;
 			font-size: 35rpx;
 			font-weight: bold;
-			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
@@ -174,7 +171,7 @@
 		position: relative;
 		z-index: 99;
 		padding: 30rpx;
-		margin: 40rpx 10rpx 0;
+		margin: 60rpx 10rpx 0;
 		background-color: #fff;
 		border-radius: 10rpx;
 		box-shadow: 0 4rpx 6rpx #f6f6f6;

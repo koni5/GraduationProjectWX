@@ -175,8 +175,23 @@
 						<view class="word" style="font-size: 30rpx"
 							>川菜馆为顾客打造专业的大众化美食餐饮</view
 						>
-						<view class="address"> 地址:{{ shopInfo.address }} </view>
-						<view>电话:{{ shopInfo.phone }}</view>
+						<view class="address">
+							<image
+								@click="choseLocation"
+								class="shopInfo_address"
+								src="../../static/images/location/location.png"
+								mode="scaleToFill"
+							/>
+							<text> 地址:{{ shopInfo.address }}</text>
+						</view>
+
+						<view class="phone">
+							<image
+								class="shopInfo_phone"
+								src="../../static/images/phone/phone.png"
+								mode="scaleToFill"
+							/><text>电话:{{ shopInfo.phone }}</text></view
+						>
 					</view>
 				</view>
 			</view>
@@ -185,12 +200,6 @@
 		<view class="viewport" style="padding-top: 285rpx">
 			<!-- 搜索框 -->
 			<view class="search">
-				<image
-					@click="choseLocation"
-					class="location"
-					src="../../static/images/location/location.png"
-					mode="scaleToFill"
-				/>
 				<view class="input">
 					<text class="icon-search">尖椒鸡</text>
 				</view>
@@ -527,23 +536,17 @@
 				display: flex;
 				align-items: center;
 				text-align: center;
-				icon {
-					background-size: contain;
-					display: inline-block;
-					width: 20rpx;
-					height: 34rpx;
-					margin-right: 10rpx;
-					// vertical-align:text-bottom;
-					margin-top: -8rpx;
+				text {
+					margin-top: 5px;
 				}
 			}
 			.phone {
-				padding: 10rpx 20rpx 10rpx 40rpx;
-				margin-left: 12rpx;
-				margin-top: 12rpx;
-				border-left: 1px solid rgba(219, 219, 219, 0.45);
-				.phoneIcon {
-					vertical-align: -webkit-baseline-middle;
+				display: flex;
+				align-items: center;
+				text-align: center;
+				text {
+					margin-top: 10px;
+					margin-left: 1px;
 				}
 			}
 		}
@@ -557,15 +560,18 @@
 		display: flex;
 		flex-direction: column;
 	}
+	.shopInfo_address {
+		width: 40rpx;
+		height: 40rpx;
+	}
+	.shopInfo_phone {
+		margin-top: 10px;
+		width: 40rpx;
+		height: 40rpx;
+	}
 	.search {
 		padding: 0 30rpx 20rpx;
 		background-color: #fff;
-		.location {
-			margin-top: 15rpx;
-			float: left;
-			width: 40rpx;
-			height: 40rpx;
-		}
 		.input {
 			display: flex;
 			align-items: center;

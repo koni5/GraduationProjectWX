@@ -1,16 +1,74 @@
 <script setup>
-	import {defineProps } from "vue";
+	import { defineProps, onMounted, ref } from "vue";
 	import { useShopStore } from "@/stores";
 	//获取父亲页面传递的参数
-	const props = defineProps(["shopList","closeLocation","getCartList"]);
+	const props = defineProps(["shopList", "closeLocation", "getCartList"]);
 	//选择店铺
 	const choseShop = (shopInfo) => {
 		let shopStore = useShopStore();
 		shopStore.setInfo(shopInfo);
-		props.getCartList()
-		props.closeLocation()
+		props.getCartList();
+		props.closeLocation();
 		// console.log(shopInfo)
 	};
+	const currentLocation = ref({ lat: 0, lng: 0 });
+	const getCurrentLocation = () => {
+		uni.getLocation({
+			type: "wgs84",
+			success: (res) => {
+				currentLocation.value = {
+					lat: res.latitude,
+					lng: res.longitude,
+				};
+				console.log(currentLocation.value);
+			},
+			fail: (err) => {
+				console.error("获取位置失败", err);
+			},
+		});
+	};
+	const degToRad = (deg) => (deg * Math.PI) / 180;
+	const calculateDistance = (shop) => {
+		const radLat1 = degToRad(currentLocation.value.lat);
+		const radLat2 = degToRad(shop.latitude);
+		const deltaLat = radLat1 - radLat2;
+		const deltaLng =
+			degToRad(currentLocation.value.lng) - degToRad(shop.longitude);
+		const a =
+			Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+			Math.cos(radLat1) *
+				Math.cos(radLat2) *
+				Math.sin(deltaLng / 2) *
+				Math.sin(deltaLng / 2);
+		const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		const distanceValue = 6371 * c; // 地球半径（单位：公里）
+		return distanceValue.toFixed(2); // 保留两位小数
+	};
+	//跳转到腾讯详情地图组件
+	const goToMap = (shop) => {
+		let plugin = requirePlugin("routePlan");
+		let key = "INIBZ-FMQEI-JREGG-UYXHR-YKSUQ-IEFUE"; //使用在腾讯位置服务申请的key
+		let referer = "cty"; //调用插件的app的名称
+		let endPoint = JSON.stringify({
+			//终点
+			name: shop.name + "-" + shop.address,
+			latitude: shop.latitude,
+			longitude: shop.longitude,
+		});
+		uni.navigateTo({
+			url:
+				"plugin://routePlan/index?key=" +
+				key +
+				"&referer=" +
+				referer +
+				"&endPoint=" +
+				endPoint +
+				"&navigation=1",
+		});
+	};
+	onMounted(() => {
+		getCurrentLocation();
+	});
 </script>
 
 <template>
@@ -32,6 +90,16 @@
 								<text class="contact">{{ item.phone }}</text>
 							</view>
 							<view class="locate">{{ item.address }}</view>
+							<view style="margin-top: 5px"
+								><image
+									@click="goToMap(item)"
+									class="location"
+									src="../../static/images/location/location.png"
+									mode="scaleToFill"
+								/><text class="miles"
+									>{{ calculateDistance(item) }}公里</text
+								></view
+							>
 						</view>
 					</view>
 				</view>
@@ -41,6 +109,15 @@
 </template>
 
 <style lang="scss">
+	.miles {
+		font-size: 30rpx;
+		padding-bottom: 10rpx;
+		color: #898989;
+	}
+	.location {
+		width: 40rpx;
+		height: 40rpx;
+	}
 	/* 删除按钮 */
 	.delete-button {
 		display: flex;

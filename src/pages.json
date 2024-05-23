@@ -9,8 +9,13 @@
 		{
 			"path": "pages/menu/menu",
 			"style": {
-				"navigationBarTitleText": "点餐",
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "店铺选择",
+				"navigationStyle": "custom",
+				"mp-weixin": {
+					"usingComponents": {
+						"routePlan": "plugin://routePlan/index"
+					}
+				}
 			}
 		},
 		{
@@ -33,35 +38,9 @@
 			}
 		},
 		{
-			"path": "pages/privacy/address/address",
-			"style": {
-				"navigationBarTitleText": "地址"
-			}
-		},
-		{
-			"path": "pages/privacy/address-form/address-form",
-			"style": {
-				"navigationBarTitleText": "新建地址"
-			}
-		},
-		{
 			"path": "pages/order/chooseCoupon/chooseCoupon",
 			"style": {
 				"navigationBarTitleText": "优惠券"
-			}
-		},
-		{
-			"path": "pages/countDown/countDown1",
-			"style": {
-				"navigationBarTitleText": "支付失败倒计时",
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/paySuccess/paySuccess",
-			"style": {
-				"navigationBarTitleText": "支付成功",
-				"navigationStyle": "custom"
 			}
 		},
 		{
